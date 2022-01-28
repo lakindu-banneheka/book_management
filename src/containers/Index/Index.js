@@ -1,4 +1,5 @@
 import React from 'react';
+import BookCardLayout from '../../components/Layout/BookCardLayout';
 import Layout from '../../components/Layout/Layout';
 
 
@@ -6,7 +7,7 @@ const Index = () => {
     return (
         <div>
             <Layout searchBar >
-                Index page
+                <BookCardLayout />
             </Layout>
         </div>
     );

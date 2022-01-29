@@ -1,6 +1,6 @@
 // Book description page
 import { Button, Dialog, Grid, TextField, Typography } from '@mui/material';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import Layout from '../../components/Layout/Layout';
 // Icons
 import DeleteIcon from '@mui/icons-material/Delete';
@@ -19,19 +19,6 @@ const View = (props) => {
         price:0,
         qty:0,
     });
-
-    // useEffect(()=>{
-    //     setbook( ...book, {
-    //         bookId : 101,
-    //         name : 'The Sun Also Rises by Ernest Hemingway',
-    //         author : 'Ernest Hemingway',
-    //         lang : 'English',
-    //         price : 1500.00,
-    //         avQty : 15,
-    //         qty : 1,
-    //         available : false,
-    //     })
-    // },[book])
 
     const onChangeNewQty = (e) => {
         setnewQty(e.target.value);
@@ -63,7 +50,7 @@ const View = (props) => {
             <Layout>
                 <div style={{padding:'30px 0px'}} >
                     <Grid container justifyContent={'center'} >
-                        <Grid item xs={11} >
+                        <Grid item xs={11} style={{ backgroundColor:'#f5f5f5', borderRadius:'10px',padding:'20px 50px' ,margin:'30px 0px',width:'100%'}} >
                             <Grid container spacing={2} justifyContent={'start'}>
                                 <Grid item xl={3} md={4} xs={10}>
                                     <div style={{border:'1px solid',width:'250px',height:'300px',margin:'11px'}} >
@@ -71,7 +58,7 @@ const View = (props) => {
                                     </div>
                                 </Grid>
                                 <Grid item xl={6} md={8} xs={10} >
-                                    <div style = {{padding:'10px'}} >
+                                    <div style = {{padding:'10px', margin:'0px 0px 0px 30px'}} >
                                         <div className='book name' >
                                             {/* <Typography display={'inline-block'} sx={{fontWeight:'600',color:'#101010'}}>Book Name : </Typography> */}
                                             <Typography display={'inline-block'} sx={{fontWeight:'700',color:'#404040',fontSize:'30px'}}>{"The Sun Also Rises by Ernest Hemingway"}</Typography>
@@ -92,7 +79,7 @@ const View = (props) => {
                                                 <Typography sx = {{fontSize:'16px',fontWeight:'550',color:'#101010',display:'inline-block',padding:'0px 5px 0px 0px'}} >{"Quantity :"}</Typography>
                                                 <Typography 
                                                     sx = {{fontSize:'16px',fontWeight:'550',color:'#505050',display:'inline-block',padding:'2px',border:'2px solid black',borderRadius:'5px',
-                                                            minWidth:'50px',textAlign:'center',background:'#F5F5F5'
+                                                            minWidth:'50px',textAlign:'center',background:'#fff'
                                                         }} 
                                                 >
                                                     {"0"}
@@ -124,7 +111,7 @@ const View = (props) => {
                                         </div>
                                         <div style={{display:'flex',justifyContent:'end'}} >
                                             <div style={{margin:'10px'}} >
-                                                <Link to='/edit' style={routeStyle} ><Button variant='contained' startIcon={<EditIcon />} >{"Edit"}</Button></Link>
+                                                <Link to='/editbook' style={routeStyle} ><Button variant='contained' startIcon={<EditIcon />} >{"Edit"}</Button></Link>
                                             </div>
                                             <div style={{margin:'10px'}} >
                                                 <Button onClick={() => {setopenDelete(true)}} variant='contained' color='secondary' startIcon={<DeleteIcon />} >{"Delete"}</Button>

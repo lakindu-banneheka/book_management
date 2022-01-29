@@ -46,13 +46,13 @@ const Header = (props) => {
                                     </div>
 
                                 }
-                            <Grid item xs={2}>
-                                        <div style={{padding:'0px 5px', display:'inline-block'}} >
-                                            <Button color="inherit"><Link to='/' style={routeStyle}>{"Add a Book"}</Link></Button>
-                                        </div>
-                                        <div style={{padding:'0px 5px', display:'inline-block'}}  >
-                                            <Link to='/' style={routeStyle}><IconButton color='inherit' style={{padding:'10px'}} ><ShoppingCartIcon /></IconButton></Link>
-                                        </div>
+                            <Grid item xs={2} sx={{display:'flex',justifyContent:'space-evenly',alignItems:'center'}} >
+                                <div style={{padding:'0px 5px'}} >
+                                    <Link to='/' style={routeStyle}><Button color="inherit">{"Add a Book"}</Button></Link>
+                                </div>
+                                <div style={{padding:'0px 5px'}}  >
+                                    <Link to='/' style={routeStyle}><IconButton color='warning' style={{padding:'10px'}} ><ShoppingCartIcon /></IconButton></Link>
+                                </div>
                             </Grid>
                         </Grid>
                     </Toolbar>

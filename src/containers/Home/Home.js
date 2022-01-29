@@ -6,7 +6,7 @@ import Layout from '../../components/Layout/Layout';
 
 const Home = () => {
     return (
-        <div style={{background:'#fff',minHeight:'100vh',minWidth:'600px'}} >
+        <div>
             <Layout searchBar >
                 <Grid container justifyContent={'center'} sx={{margin:'30px 0px'}} >
                     <Grid item xs={11}>

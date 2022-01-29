@@ -4,15 +4,15 @@ import BookCard from '../BookCard/BookCard';
 
 const BookCardLayout = (props) => {
     return (
-        <div style={{background:'',padding:'20px 20px',borderRadius:'10px',opacity:'90%'}} >
-            <Grid container justifyContent={'center'} spacing={3} >
-                <Grid item xl={4} xs={12}>
+        <div>
+            <Grid container justifyContent={'center'} spacing={3} style={{ minWidth:'580px' ,backgroundColor:'#f5f5f5', borderRadius:'10px',padding:'20px 50px' ,margin:'30px 0px',width:'100%'}} >
+                <Grid item xl={5} xs={12}>
                     <BookCard />
                 </Grid>
-                <Grid item xl={4} xs={12}>
+                <Grid item xl={5} xs={12}>
                     <BookCard />
                 </Grid>
-                <Grid item xl={4} xs={12}>
+                <Grid item xl={5} xs={12}>
                     <BookCard />
                 </Grid>
             </Grid>

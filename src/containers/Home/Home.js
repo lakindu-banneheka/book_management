@@ -4,7 +4,7 @@ import BookCardLayout from '../../components/Layout/BookCardLayout';
 import Layout from '../../components/Layout/Layout';
 
 
-const Index = () => {
+const Home = () => {
     return (
         <div style={{background:'#fff',minHeight:'100vh',minWidth:'600px'}} >
             <Layout searchBar >
@@ -18,4 +18,4 @@ const Index = () => {
     );
 };
 
-export default Index;
+export default Home;

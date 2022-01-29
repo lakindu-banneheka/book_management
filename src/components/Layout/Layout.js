@@ -7,9 +7,11 @@ const Layout = (props) => {
     return (
         <>
             <Header searchBar={props.searchBar} />
-            { 
-                props.children
-            }
+            <div style={{marginTop:'80px',background:'#fff',minHeight:'88vh',minWidth:'600px'}} >
+                {props.children}
+            </div>
+                
+            
         </>
     );
 };

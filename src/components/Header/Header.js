@@ -54,7 +54,7 @@ const Header = (props) => {
                                     <Link to='/addbook' style={routeStyle}><Button color="inherit">{"Add a Book"}</Button></Link>
                                 </div>
                                 <div style={{padding:'0px 5px'}}  >
-                                    <Link to='/' style={routeStyle}><IconButton color='warning' style={{padding:'10px'}} ><ShoppingCartIcon /></IconButton></Link>
+                                    <Link to='/cart' style={routeStyle}><IconButton color='warning' style={{padding:'10px'}} ><ShoppingCartIcon /></IconButton></Link>
                                 </div>
                             </Grid>
                         </Grid>

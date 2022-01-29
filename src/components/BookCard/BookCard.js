@@ -8,12 +8,21 @@ import { Link } from 'react-router-dom';
 const BookCard = () => {
 
     const [book,setbook] = useState({
+        // bookId:0,
+        // name:'',
+        // author:'',
+        // lang:'',
+        // price:0,
+        // avQty : 0,
+        // qty : 1,
+        // available : false,
+        // ------------------------
         bookId:0,
-        name:'',
-        author:'',
-        lang:'',
-        price:0,
-        avQty : 0,
+        name : 'The Sun Also Rises by Ernest Hemingway',
+        author : 'Ernest Hemingway',
+        lang : 'English',
+        price : 1500.00,
+        avQty : 15,
         qty : 1,
         available : false,
     });

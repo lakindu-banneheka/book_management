@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router , Routes, Route } from 'react-router-dom';
 import AddBook from './containers/AddBook/AddBook';
+import Cart from './containers/Cart/Cart';
 import EditBook from './containers/EditBook/EditBook';
 import Home from './containers/Home/Home';
 import View from './containers/View/View';
@@ -9,10 +10,6 @@ import View from './containers/View/View';
 
 
 function App() {
-  
-  const Cart = () => {
-    return <div>Cart</div>
-  }
   
   return (
     <div className="App">

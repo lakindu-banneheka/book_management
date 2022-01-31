@@ -1,8 +1,15 @@
 import { Button, FormControl, Grid, TextField, Typography } from '@mui/material';
 import React, { useState } from 'react';
 import Layout from '../../components/Layout/Layout';
+import { useDispatch } from 'react-redux';
+import { addBook } from '../../actions/book.actions';
+import { useNavigate  } from "react-router-dom";
+
+
 
 const AddBook = () => {
+    const dispatch = useDispatch();
+    let navigate = useNavigate();
 
     const [newBook,setnewBook] = useState({
         name:'',
@@ -15,10 +22,12 @@ const AddBook = () => {
     });
 
     const onClickAddBook = () => {
-        // send req to back end 
         if(newBook.name.length > 0){
             console.log(newBook)
+            dispatch(addBook(newBook))
         }
+        onClickReset();
+        navigate("/")
     }
 
     const onClickReset = () => {
@@ -49,7 +58,9 @@ const AddBook = () => {
                         </div>
                         <Grid container justifyContent={'center'} spacing={2} >
                             <Grid item xs={12} md={3} sx={{display:'flex',justifyContent:'center'}} >
-                                <div style={{border:'1px solid black',width:'170px',minHeight:'220px'}} ></div>
+                                <div style={{border:'1px solid black',width:'170px',minHeight:'220px'}} >
+                                    IMG
+                                </div>
                             </Grid>
                             <Grid item xs={12} md={9}>
                                 <Grid container justifyContent={'center'} spacing={2} >

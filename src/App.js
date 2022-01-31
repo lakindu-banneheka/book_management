@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router , Routes, Route } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import AddBook from './containers/AddBook/AddBook';
 import Cart from './containers/Cart/Cart';
 import EditBook from './containers/EditBook/EditBook';
@@ -13,15 +13,15 @@ function App() {
   
   return (
     <div className="App">
-      <Router>
+      {/* <Router> */}
         <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/view" element={<View />} />
-            <Route path="/addbook" element={<AddBook />} />
-            <Route path="/cart" element={<Cart />} />
-            <Route path="/editbook" element={<EditBook />} />
+            <Route path="book/:id" element={<View />} />
+            <Route path="book/addbook" element={<AddBook />} />
+            <Route path="cart" element={<Cart />} />
+            <Route path="book/editbook/:id" element={<EditBook />} />
         </Routes>
-      </Router>
+      {/* </Router> */}
     </div>
   );
 }

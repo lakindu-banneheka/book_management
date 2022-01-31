@@ -51,7 +51,7 @@ const Header = (props) => {
                                 }
                             <Grid item xs={2} sx={{display:'flex',justifyContent:'space-evenly',alignItems:'center'}} >
                                 <div style={{padding:'0px 5px'}} >
-                                    <Link to='/addbook' style={routeStyle}><Button color="inherit">{"Add a Book"}</Button></Link>
+                                    <Link to='/book/addbook' style={routeStyle}><Button color="inherit">{"Add a Book"}</Button></Link>
                                 </div>
                                 <div style={{padding:'0px 5px'}}  >
                                     <Link to='/cart' style={routeStyle}><IconButton color='warning' style={{padding:'10px'}} ><ShoppingCartIcon /></IconButton></Link>

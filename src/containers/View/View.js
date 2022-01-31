@@ -1,43 +1,83 @@
 // Book description page
 import { Button, Dialog, Grid, TextField, Typography } from '@mui/material';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Layout from '../../components/Layout/Layout';
+import { useParams ,useNavigate  } from "react-router-dom";
+// import { Redirect } from "react-router-dom";
+import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { getABook , deleteBook , updateBook } from '../../actions/book.actions';
+
 // Icons
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
-import { Link } from 'react-router-dom';
+
+
 
 const View = (props) => {
     const [openDelete,setopenDelete] = useState(false);
     const [openAddStock,setopenAddStock] = useState(false); 
     const [newQty,setnewQty] = useState(0);
-    const [book,setbook] = useState({
-        bookId:'',
-        name:'',
-        author:'',
-        lang:'',
-        price:0,
-        qty:0,
-    });
+    const [bookState,setbookState] = useState({
+        _id:'',
+        name:'', 
+        author:'' , 
+        quantity:0 , 
+        price:0 , 
+        lanuage:'' , 
+        publisher:''
+    })
+    
 
-    const onChangeNewQty = (e) => {
+    const params = useParams();
+    let navigate = useNavigate();
+    const book = useSelector(state => state.book.book);
+
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(getABook(params.id)) // send book_id 
+    },[dispatch,params.id])
+
+    useEffect(() => {
+        setbookState(book)
+    },[book]);
+
+    const onChangeNewQty = (e) => {           // new qty - on change
         setnewQty(e.target.value);
+        
+    }
+    
+
+    const onClickQtyUpdate = () => {        // sum qty - dispatch
+        
+        // let sumqty = 0;
+        // sumqty.sum = Number(bookState.quantity) + Number(newQty);
+        // setbookState({
+        //     ...bookState,
+        //         quantity:sumqty.sum
+        // });
+        
+        if(bookState.name.length > 0){
+        dispatch(updateBook(bookState,params.id))
+        }
+        setopenAddStock(false); 
+        setnewQty(0);
     }
 
     const onClose = () => {
         setopenAddStock(false);
         setopenDelete(false);
     }
-    const onDelete = () => {
-        // set a req to back end to delete
-        setopenDelete(false);
-    }
 
-    const onClickQtyUpdate = () => {
-        // set a update req (qty)
-        setopenAddStock(false); 
-        setnewQty(0);
+    const onDelete = () => {        // onDelete - book
+        dispatch((deleteBook(params.id)));
+        setopenDelete(false);
+            return navigate("/")
     }
+    
+
+
 
     const routeStyle = {
         color:'#fff',
@@ -61,18 +101,18 @@ const View = (props) => {
                                     <div style = {{padding:'10px', margin:'0px 0px 0px 30px'}} >
                                         <div className='book name' >
                                             {/* <Typography display={'inline-block'} sx={{fontWeight:'600',color:'#101010'}}>Book Name : </Typography> */}
-                                            <Typography display={'inline-block'} sx={{fontWeight:'700',color:'#404040',fontSize:'30px'}}>{"The Sun Also Rises by Ernest Hemingway"}</Typography>
+                                            <Typography display={'inline-block'} sx={{fontWeight:'700',color:'#404040',fontSize:'30px'}}>{bookState.name}</Typography>
                                         </div>
                                         <div style = {{margin:'0px 3px 3px 15px',}} >
 
-                                        { props.available ? <Typography sx={{fontSize:'14px',fontWeight:'800',color:'green',display:'inline-block',background:''}} >{"In Stock"}</Typography>
+                                        { bookState.quantity > 0 ? <Typography sx={{fontSize:'14px',fontWeight:'800',color:'green',display:'inline-block',background:''}} >{"In Stock"}</Typography>
                                             : <Typography sx={{fontSize:'14px',fontWeight:'800',color:'red',display:'inline-block',background:''}} >{"Out of Stock"}</Typography>
                                         }
                                         
                                         </div>
                                         <div style = {{margin:'10px 0px'}} >
-                                            <Typography sx = {{fontSize:'18px',fontWeight:'700',color:'#707070',display:'inline-block',padding:'0px 5px 0px 0px'}} >{"LKRS :"}</Typography>
-                                            <Typography sx = {{fontSize:'18px',fontWeight:'700',color:'#707070',display:'inline-block'}} >{"1500.00"}</Typography>
+                                            <Typography sx = {{fontSize:'18px',fontWeight:'700',color:'#707070',display:'inline-block',padding:'0px 5px 0px 0px'}} >{"Rs."}</Typography>
+                                            <Typography sx = {{fontSize:'18px',fontWeight:'700',color:'#707070',display:'inline-block'}} >{bookState.price}</Typography>
                                         </div>
                                         <div style = {{margin:'10px 0px',display:'flex',alignItems:'center'}} >
                                             <div>
@@ -82,7 +122,7 @@ const View = (props) => {
                                                             minWidth:'50px',textAlign:'center',background:'#fff'
                                                         }} 
                                                 >
-                                                    {"0"}
+                                                    {bookState.quantity}
                                                 </Typography>
                                             </div>
                                             <div style={{margin:'0px 20px'}} >
@@ -97,21 +137,21 @@ const View = (props) => {
                                             <div style={{padding:'0px 0px 0px 10px'}} >
                                                 <div>
                                                     <Typography sx = {{fontSize:'16px',fontWeight:'500',color:'#101010',display:'inline-block',padding:'0px 5px 3px 0px'}} >{"Author :"}</Typography>
-                                                    <Typography sx = {{fontSize:'16px',fontWeight:'500',color:'#505050',display:'inline-block',padding:'0px 0px 3px 0px'}} >{"Ernest Hemingway"}</Typography>
+                                                    <Typography sx = {{fontSize:'16px',fontWeight:'500',color:'#505050',display:'inline-block',padding:'0px 0px 3px 0px'}} >{bookState.author}</Typography>
                                                 </div>
                                                 <div>
                                                     <Typography sx = {{fontSize:'16px',fontWeight:'500',color:'#101010',display:'inline-block',padding:'0px 5px 3px 0px'}} >{"Language :"}</Typography>
-                                                    <Typography sx = {{fontSize:'16px',fontWeight:'500',color:'#505050',display:'inline-block',padding:'0px 0px 3px 0px'}} >{"English"}</Typography>
+                                                    <Typography sx = {{fontSize:'16px',fontWeight:'500',color:'#505050',display:'inline-block',padding:'0px 0px 3px 0px'}} >{bookState.lanuage}</Typography>
                                                 </div>
                                                 <div>
                                                     <Typography sx = {{fontSize:'16px',fontWeight:'500',color:'#101010',display:'inline-block',padding:'0px 5px 3px 0px'}} >{"Publisher :"}</Typography>
-                                                    <Typography sx = {{fontSize:'16px',fontWeight:'500',color:'#505050',display:'inline-block',padding:'0px 0px 3px 0px'}} >{""}</Typography>
+                                                    <Typography sx = {{fontSize:'16px',fontWeight:'500',color:'#505050',display:'inline-block',padding:'0px 0px 3px 0px'}} >{bookState.publisher}</Typography>
                                                 </div>
                                             </div>
                                         </div>
                                         <div style={{display:'flex',justifyContent:'end'}} >
                                             <div style={{margin:'10px'}} >
-                                                <Link to='/editbook' style={routeStyle} ><Button variant='contained' startIcon={<EditIcon />} >{"Edit"}</Button></Link>
+                                                <Link to={`/book/editbook/${bookState._id}`} style={routeStyle} ><Button variant='contained' startIcon={<EditIcon />} >{"Edit"}</Button></Link>
                                             </div>
                                             <div style={{margin:'10px'}} >
                                                 <Button onClick={() => {setopenDelete(true)}} variant='contained' color='secondary' startIcon={<DeleteIcon />} >{"Delete"}</Button>
